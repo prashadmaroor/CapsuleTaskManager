@@ -1,0 +1,120 @@
+<header>
+  <h1><strong>Update Task</strong></h1>	
+</header>
+
+<section>
+<form class="form-horizontal" [formGroup]="updateTaskForm" (ngSubmit)="formHandler()" novalidate> 
+   
+    <div class="form-group">  
+            <input type="string" formControlName="id" class="form-control" id="id" hidden="true">
+    </div> 
+
+  <div class="form-group">  
+              <label class="control-label col-sm-2" for="task">Task</label>
+              <div class="col-sm-5" [ngClass]="{'has-error': updateTaskForm.controls.task.invalid && updateTaskForm.controls.task.dirty,
+                                      'has-success': updateTaskForm.controls.task.valid  && updateTaskForm.controls.task.dirty }"  >
+              <input type="string" formControlName="task" class="form-control" id="task" placeholder="Enter the name of the task">
+              </div>  
+              <div class="alert-danger col-sm-4" *ngIf="updateTaskForm.controls.task.invalid && updateTaskForm.controls.task.dirty"> 
+                  Task field can contain only Alphanumeric Value 
+              </div> 
+          </div>   
+          
+          <div class="form-group">  
+                  <label class="control-label col-sm-2" for="priority">Priority</label>
+                  <div class="col-sm-5" [ngClass]="{'has-error': updateTaskForm.controls.priority.invalid && updateTaskForm.controls.priority.dirty,
+                                          'has-success': updateTaskForm.controls.priority.valid  && updateTaskForm.controls.priority.dirty }"  >
+                  <strong><output id = "put"></output></strong>
+                  <br>
+                  <input type="range"  min="0" max="30" #priority (change)="printOutput(priority)" formControlName="priority" class="form-control" id="priority" >
+                 
+              </div>  
+          </div>   
+
+          
+      <div class="form-group">  
+              <label class="control-label col-sm-2" for="task">Parent Task</label>
+              <div class="col-sm-5" [ngClass]="{'has-error': updateTaskForm.controls.parentTask.invalid && updateTaskForm.controls.parentTask.dirty,
+                                      'has-success': updateTaskForm.controls.parentTask.valid  && updateTaskForm.controls.parentTask.dirty }"  >
+              <select [(ngModel)]="taskSelected" formControlName="parentTask" class="form-control" id="parentTask"  >
+                <option selected="selected">
+                   {{ taskSelected}}
+                </option>
+                
+                <option *ngFor="let variable1 of task;let i = index;" [ngValue]=variable1>
+                     {{variable1.task}}
+                 </option>
+              </select>
+              </div>  
+              <div class="alert-danger col-sm-4" *ngIf="updateTaskForm.controls.parentTask.invalid && updateTaskForm.controls.parentTask.dirty"> 
+                  Parent Task field can contain only Alphanumeric Value 
+              </div> 
+          </div>   
+          
+          <div class="form-group">  
+                  <label class="control-label col-sm-2" for="task">Start Date</label>
+                  <div class="col-sm-5" [ngClass]="{'has-error': updateTaskForm.controls.startDate.invalid && updateTaskForm.controls.startDate.dirty,
+                                          'has-success': updateTaskForm.controls.startDate.valid  && updateTaskForm.controls.startDate.dirty }"  >
+                  <input type="text" bsDatepicker formControlName="startDate" class="form-control" id="startDate" placeholder="Enter Start Date">
+                  </div>  
+          </div>   
+ 
+          
+      <div class="form-group">  
+              <label class="control-label col-sm-2" for="task">End Date</label>
+              <div class="col-sm-5" [ngClass]="{'has-error': updateTaskForm.controls.endDate.invalid && updateTaskForm.controls.endDate.dirty,
+                                      'has-success': updateTaskForm.controls.endDate.valid  && updateTaskForm.controls.endDate.dirty }"  >
+              <input type="text" bsDatepicker formControlName="endDate" class="form-control" id="endDate" placeholder="Enter end Date">
+              </div>  
+          </div>   
+          <br>
+          <div class="form-group"> 
+                  <div class="col-sm-offset-3 col-sm-2 col-md-10">
+                      <span class="d-inline-block" tabindex="0" data-toggle="tooltip" *ngIf="updateTaskForm.status =='INVALID' || updateTaskForm.pristine" title="Update the value of atleast one field and ensure kindly ensure all the mandatory(*) data are available to update the task">
+                  <button type="submit" style="pointer-events: none;" class="btn btn-danger " [disabled]="updateTaskForm.status=='INVALID' || updateTaskForm.pristine">Update Task</button>
+                  </span>
+                  <button type="submit" class = "btn btn-danger" *ngIf="updateTaskForm.status !='INVALID' && !updateTaskForm.pristine" >                       
+                      Update Task</button>
+                  &nbsp;
+                  <a [routerLink]="['/viewTasks']">  <button type="button" class="btn btn-secondary">Back</button> </a> 
+                  </div>
+          </div>
+  </form>
+</section>
+             
+<footer>
+        <div class="container-fluid padding">
+        <div class="row padding text-center">
+          <div class="col-md-4">
+              <hr class="hrTag">
+              <h5> Author </h5>
+            <hr class="hrTag">
+            <p>Prasad Pai</p>
+            <p>prashadmaroor12@gmail.com</p>
+          </div>
+          <div class="col-md-4">
+              <hr class="hrTag">
+              <h5>Working Days</h5>
+              <hr class="hrTag">
+              <p><strong>Monday-Friday:</strong> Open</p>
+              <p><strong>Saturday-Sunday:</strong> Closed</p>
+            </div>
+            <div class="col-md-4">
+                <hr class="hrTag">
+                <h5>Work Locations</h5>
+                <hr class="hrTag">
+                <p>Mangaluru</p>
+                <p>Kolkata</p>
+              </div>
+              <br>
+              <div class="col-12">
+                  <hr class="hrTag">
+                  <p>&copy; CopyRight 2019</p>
+                  <hr class="hrTag">
+                </div>
+    </div>
+    </div>
+    </footer>              
+
+    
+{{updateTaskForm.controls.value  | json}}

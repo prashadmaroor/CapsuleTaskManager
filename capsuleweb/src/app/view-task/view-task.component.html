@@ -1,0 +1,126 @@
+<header>
+  <h1><strong>View Tasks</strong></h1>	
+</header>
+
+<br>
+
+<section>
+
+    <button type="button" class="btn btn-secondary" id = "collapseButton" data-toggle="collapse" data-target="#searchform"><strong>Click Me for Search Task Form!!!</strong></button>
+    <div id="searchform" class="collapse">
+      <br>  
+      <h3 align="center"><font color ="blue">Search Form</font></h3>
+      <br>  
+        <form class="form-horizontal" id="searchForm">
+        
+          <div class="form-group" >  
+          <label class="control-label col-sm-2" for="taskSearch">Task :</label>
+          <input type="text" class="form-control" id="taskSearch" name ="taskSearch" placeholder="Enter task to be Searched" [(ngModel)]="taskSearch"> 
+          </div>  
+
+          <div class="form-group" > 
+          <label class="control-label col-sm-2" for="task4">Parent Task :</label>   
+          <input type="text" class="form-control" id = "task4" name ="task4" placeholder="Enter Parent Task to be Search" [(ngModel)]="parentTaskSearch"> 
+          </div>
+        
+
+          <div class="form-group" > 
+            <label class="control-label col-sm-2" for="task2">Priority From:</label>
+            <input type="text"  class="form-control" id="task2" name ="task2" placeholder="Priority From" [(ngModel)]="priorityFrom"> 
+            <label class="control-label col-sm-2" for="task3">Priority To:</label>
+            <input type="text"  class="form-control" id="task2" name ="task3" placeholder="Priority To" [(ngModel)]="priorityTo"> 
+          </div>
+
+          <div class="form-group" > 
+              <label class="control-label col-sm-2" for="task5">Start Date :</label>
+            <input type="text" bsDatepicker class="form-control" id ="task5" name ="task5" placeholder="Enter Start Date" [(ngModel)]="startDateSearch">
+          </div> 
+
+          <div class="form-group" > 
+          <label class="control-label col-sm-2" for="task6">End Date :</label> 
+          <input type="text" bsDatepicker class="form-control" name ="task6" placeholder="Enter End Date" [(ngModel)]="endDateSearch">
+        </div>
+          
+          <br>
+          <div class="form-group" > 
+          <input type="reset" class="btn btn-primary form-control"  value="Reset">
+          </div>
+
+        </form>
+    </div>
+</section>
+
+<br><br>
+
+<article class="table-responsive">      
+  <table class="table table-striped table-hover table-condensed table-bordered">
+   <thead>
+      <tr>
+          <td>Task</td>
+          <td>Parent Task</td>
+          <td>Priority</td>
+          <td>Start Date</td>
+          <td>End Date</td>    
+          <td>Edit </td>   
+          <td>End </td>   
+          <td>Delete</td>   
+      </tr>
+        
+   </thead>
+    
+   <tr>  
+   <td  class="row" *ngIf = "(data |  task : taskSearch : priorityFrom : priorityTo : parentTaskSearch :startDateSearch :endDateSearch) ?.length == 0">
+   <div align ="center"><font color ="red" weight="bold">No Records Found</font></div>   
+   </td>
+   </tr>
+    
+   <tr *ngFor="let result of data | task : taskSearch : priorityFrom : priorityTo : parentTaskSearch :startDateSearch :endDateSearch">
+      <td>{{result.task}}</td>
+      <td>{{result.parentTask.parentTask}}</td>
+      <td>{{result.priority}}</td>
+      <td>{{result.startDate}}</td>
+      <td>{{result.endDate}}</td>
+      <td><a [routerLink]="['/tasks/',result.taskId]">  <button type="button" [disabled]="result.endDate <= currentDate" class="btn btn-primary">Edit</button> </a> </td>
+      <td><button type="button" class="btn btn-primary"   (click)="updateEndDate(result)" [disabled]="result.endDate <= currentDate"> End </button>
+      <td><button type="button" class="btn btn-danger"   (click)="deleteTask(result)"> Delete </button>
+      </td> 
+      
+    </tr>
+    </table>
+    </article>
+
+    <br>
+    
+    <footer>
+      <div class="container-fluid padding">
+      <div class="row padding text-center">
+        <div class="col-md-4">
+            <hr class="hrTag">
+            <h5> Author </h5>
+          <hr class="hrTag">
+          <p>Prasad Pai</p>
+          <p>prashadmaroor12@gmail.com</p>
+        </div>
+        <div class="col-md-4">
+            <hr class="hrTag">
+            <h5>Working Days</h5>
+            <hr class="hrTag">
+            <p><strong>Monday-Friday:</strong> Open</p>
+            <p><strong>Saturday-Sunday:</strong> Closed</p>
+          </div>
+          <div class="col-md-4">
+              <hr class="hrTag">
+              <h5>Work Locations</h5>
+              <hr class="hrTag">
+              <p>Mangaluru</p>
+              <p>Kolkata</p>
+            </div>
+            <br>
+            <div class="col-12">
+                <hr class="hrTag">
+                <p>&copy; CopyRight 2019</p>
+                <hr class="hrTag">
+              </div>
+  </div>
+  </div>
+  </footer>              

@@ -1,0 +1,52 @@
+{
+  "taskObject": [
+    {
+      "id": 1,
+      "task": "test",
+      "priority": 13,
+      "startDate": "2019-04-05",
+      "endDate": "2019-04-01",
+      "parentTask": "This Task has no parent"
+    },
+    {
+      "id": 2,
+      "task": "Test Task 2",
+      "priority": 9,
+      "parentTask": "This Task has no parent",
+      "startDate": "2019-04-05",
+      "endDate": "2019-04-27"
+    },
+    {
+      "id": 3,
+      "task": "aaaaaaa",
+      "priority": 6,
+      "parentTask": "This Task has no parent",
+      "startDate": "2019-04-13",
+      "endDate": "2019-04-26"
+    },
+    {
+      "id": 4,
+      "task": "aaaaaaa",
+      "priority": 9,
+      "parentTask": "This Task has no parent",
+      "startDate": "2019-04-13",
+      "endDate": "2019-04-26"
+    },
+    {
+      "id": 5,
+      "task": "aaaaaaa",
+      "priority": 6,
+      "parentTask": "This Task has no parent",
+      "startDate": "2019-04-19",
+      "endDate": "2019-04-26"
+    },
+    {
+      "id": 6,
+      "task": "Test Task 23",
+      "priority": 18,
+      "parentTask": "test",
+      "startDate": "2019-04-04",
+      "endDate": "2019-04-10"
+    }
+  ]
+}
